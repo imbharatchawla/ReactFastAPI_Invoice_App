@@ -1,0 +1,58 @@
+services:
+  postgres:
+    image: postgres:16
+    container_name: invoice_rbac_postgres
+    restart: unless-stopped
+
+    environment:
+      POSTGRES_DB: invoice_rbac_db
+      POSTGRES_USER: invoice_user
+      POSTGRES_PASSWORD: invoice_pass
+
+    ports:
+      - "5432:5432"
+
+    volumes:
+      - invoice_rbac_pgdata:/var/lib/postgresql/data
+
+    healthcheck:
+      test:
+        [
+          "CMD-SHELL",
+          "pg_isready -U invoice_user -d invoice_rbac_db"
+        ]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+      start_period: 10s
+
+  backend:
+    container_name: invoice_rbac_backend
+    restart: unless-stopped
+
+    build:
+      context: .
+      dockerfile: Dockerfile
+
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+    env_file:
+      - backend/.env
+
+    environment:
+      DATABASE_URL: postgresql+psycopg2://invoice_user:invoice_pass@postgres:5432/invoice_rbac_db
+
+      ENVIRONMENT: development
+      CHROMIUM_PATH: /usr/bin/chromium
+
+    ports:
+      - "8000:8000"
+
+    volumes:
+      - invoice_rbac_uploads:/app/backend/uploads
+
+volumes:
+  invoice_rbac_pgdata:
+  invoice_rbac_uploads:

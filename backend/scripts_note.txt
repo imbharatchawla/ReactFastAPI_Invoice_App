@@ -1,0 +1,2 @@
+Superadmin and RBAC seed are created automatically in app/main.py startup_seed().
+This keeps password hashing safe and avoids storing plain password SQL inserts.

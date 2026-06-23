@@ -1,0 +1,12 @@
+V6.21.57
+- Replaced app/navbar/favicon/invoice print logo with the provided DYNE IT Services PNG.
+- Updated public and dist logo asset to dyn-logo.png.
+- Browser tab favicon now uses the provided PNG logo.
+- Backend changes: No. Alembic migration required: No.
+
+V6.21.58
+- Fixed invoice PDF filenames to use DYNE-CLIENT-INVYYYYMM#### format.
+- Download PDF now saves using the formatted filename, for example DYNE-NTT-INV2026040001.pdf.
+- Print / Save PDF document title now uses the formatted filename suggestion.
+- Frontend dist rebuilt.
+- Backend changes: No. Alembic migration required: No.

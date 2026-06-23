@@ -1,0 +1,8 @@
+-- Recommended flow:
+-- 1) Run backend migrations: alembic upgrade head
+-- 2) Start FastAPI once. On startup it seeds modules, roles, default permissions and superadmin.
+-- Default superadmin from backend/.env.example:
+-- email: superadmin@example.com
+-- password: Mahakal@777
+--
+-- Reason: password hashing should happen through backend security code, not plain SQL.

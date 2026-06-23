@@ -1,0 +1,28 @@
+.env
+.env.*
+!.env.example
+
+venv
+.venv
+
+__pycache__
+*.pyc
+*.pyo
+.pytest_cache
+
+.git
+.gitignore
+
+frontend
+node_modules
+
+backend/__pycache__
+backend/app/__pycache__
+backend/tests
+backend/app/tests
+
+backend/static/New folder
+backend/static/New folder (2)
+
+backend/uploads/*
+!backend/uploads/.gitkeep
